@@ -29,7 +29,7 @@ namespace Lab3
                 }
             } while (continueFlag);
             
-
+            Console.WriteLine("Bye!");
             Console.ReadKey();
         }
 
