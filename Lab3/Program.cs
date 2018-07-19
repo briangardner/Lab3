@@ -10,7 +10,6 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
-
             Console.Write("Please enter an integer between 1 and 100:");
             var input = Console.ReadLine();
             if (int.TryParse(input, out var inputAsInteger))
@@ -21,34 +20,44 @@ namespace Lab3
                 }
                 if (inputAsInteger % 2 == 0)
                 {
-                    //Even Cases
-                    if (inputAsInteger >= 2 && inputAsInteger <= 25)
-                    {
-                        Console.WriteLine("Even and less than 25.");
-                    }
-                    else if (inputAsInteger >= 26 && inputAsInteger <= 60)
-                    {
-                        Console.WriteLine("Even");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{inputAsInteger} Even.");
-                    }
+                    GenerateEvenOutput(inputAsInteger);
                 }
                 else
                 {
-                    //Odd Cases
-
-                    //There is no need to check input ranges, because they both output the same text.
-                    Console.WriteLine($"{inputAsInteger} Odd.");
+                    GenerateOddOutput(inputAsInteger);
                 }
             }
             else
             {
-                Console.WriteLine("Please input a number");
+                Console.WriteLine("Please input an integer.");
             }
 
             Console.ReadKey();
+        }
+
+        private static void GenerateOddOutput(int inputAsInteger)
+        {
+//Odd Cases
+
+            //There is no need to check input ranges, because they both output the same text.
+            Console.WriteLine($"{inputAsInteger} Odd.");
+        }
+
+        private static void GenerateEvenOutput(int inputAsInteger)
+        {
+//Even Cases
+            if (inputAsInteger >= 2 && inputAsInteger <= 25)
+            {
+                Console.WriteLine("Even and less than 25.");
+            }
+            else if (inputAsInteger >= 26 && inputAsInteger <= 60)
+            {
+                Console.WriteLine("Even");
+            }
+            else
+            {
+                Console.WriteLine($"{inputAsInteger} Even.");
+            }
         }
     }
 }
