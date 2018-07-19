@@ -10,16 +10,40 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
-            Console.Write("Please Enter your Name: ");
-            var name = Console.ReadLine();
-            Console.Write("Please enter an integer between 1 and 100:");
-            var input = Console.ReadLine();
+            bool continueFlag = true;
+            var name = GetName();
+            do
+            {
+                DetermineEvenOdd(name);
+                var userContinue = ' ';
+                do
+                {
+                    Console.Write("Would you like to Continue? Y/N");
+                    userContinue = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+                } while (char.ToLower(userContinue) != 'y' && char.ToLower(userContinue) != 'n');
+
+                if (char.ToLower(userContinue) == 'n')
+                {
+                    continueFlag = false;
+                }
+            } while (continueFlag);
+            
+
+            Console.ReadKey();
+        }
+
+        private static void DetermineEvenOdd(string name)
+        {
+            
+            var input = GetNumber();
             if (int.TryParse(input, out var inputAsInteger))
             {
                 if (inputAsInteger < 1 || inputAsInteger > 100)
                 {
                     Console.WriteLine("The number you input was not between 1 and 100.");
                 }
+
                 if (inputAsInteger % 2 == 0)
                 {
                     GenerateEvenOutput(name, inputAsInteger);
@@ -33,8 +57,20 @@ namespace Lab3
             {
                 Console.WriteLine("Please input an integer.");
             }
+        }
 
-            Console.ReadKey();
+        private static string GetNumber()
+        {
+            Console.Write("Please enter an integer between 1 and 100:");
+            var input = Console.ReadLine();
+            return input;
+        }
+
+        private static string GetName()
+        {
+            Console.Write("Please Enter your Name: ");
+            var name = Console.ReadLine();
+            return name;
         }
 
         private static void GenerateOddOutput(string name, int inputAsInteger)
